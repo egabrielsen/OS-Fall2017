@@ -26,10 +26,10 @@ int main(int argc, char *argv[ ]) {
 
   for (int i = 0; i < count; i++) {
     printf("Original Process with PID: %d and PPID: %d tick %d\n", getpid(), getppid(), i);
-    // sleep(1);
+    sleep(1);
   }
   printf("Parent process terminating\n");
-  // wait(NULL);
+  wait(NULL);
 }
 
 /* Answers to Questions:
