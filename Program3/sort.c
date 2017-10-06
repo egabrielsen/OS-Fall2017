@@ -6,6 +6,18 @@
 #include <time.h>
 #include <pthread.h>
 
+/* -- Answers to Questions
+  1) I expected that the pthread implementation would work faster on large data sets
+  because of the ability to do the task in parrallel. I assume that spawning the threads will require a bit of overhead
+
+  2) The results were pretty surprising. It turned out that the Sequencial mege sort
+   for the two smaller arrays and then merging the two together rather without pthreads was the fastest.
+   This may have something to do with how I implemented the mergeArray() function so that it would run in O(2n).
+   The overhead of spawning threads must be too big for these computations for them to be of any advantage in terms of sorting.
+
+
+*/
+
 void *sort(int array[]);
 void merge(int *A,int *L,int leftCount,int *R,int rightCount);
 void mergeSort(int *A,int n);
