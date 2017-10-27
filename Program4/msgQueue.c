@@ -112,13 +112,19 @@ void* consumer(int consumer) {
     } else {
       int value = atoi(message.mtext); // read value here from queue
       sum += value;
-      printf("“Consumer thread %d consumed a %d”\n", consumer, value);
+      printf("Consumer thread %d consumed a %d\n", consumer, value);
     }
 
     sleep((rand()%3)+1);
   }
 
   printf("Total consumed by consumer thread %d = %d\n", consumer, sum);
-
-
 }
+
+
+/* Answers
+  Mutual exclusion is accomplished by having a shared queue between all of the threads.
+  Each thread pulls a message off the queue so that another thread cannot get the same message.
+  This is synchronized by having a sleep between when a message is given and received.
+
+*/
