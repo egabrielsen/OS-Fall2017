@@ -9,7 +9,7 @@
 void *consumer(int);
 
 int N;
-
+int msqid;
 /* message structure */
 struct message {
     long mtype;
@@ -22,7 +22,7 @@ int main(int argc, char *argv[ ]) {
   else
     N = 10; // default value of N
 
-  int msqid = msgget(IPC_PRIVATE, IPC_CREAT | 0600);
+  msqid = msgget(IPC_PRIVATE, IPC_CREAT | 0600);
   if (msqid == -1) {
       perror("msgget");
       return EXIT_FAILURE;
@@ -107,7 +107,16 @@ void* consumer(int consumer) {
   printf("Running thread %d\n", consumer);
   int sum = 0;
   for (int i = 0; i < N / 3; i++) {
-    int value = i; // read value here from queue
+    struct message message;
+    if (msgrcv(msqid, &message, 8192, 0, 0) == -1) {
+        perror("msgrcv");
+
+        return EXIT_FAILURE;
+    }
+
+    printf("MESSAGE VAL: %s\n", message.mtext);
+
+    int value = atoi(message.mtext); // read value here from queue
     sum += value;
     printf("“Consumer thread %d consumed a %d”\n", consumer, value);
     sleep((rand()%3)+1);
