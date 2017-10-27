@@ -61,7 +61,6 @@ int main(int argc, char *argv[ ]) {
     pthread_join( thread3, NULL);
 
 
-    printf("Child process terminating\n");
     exit(0);
   }
 
@@ -99,12 +98,10 @@ int main(int argc, char *argv[ ]) {
 
   printf("Total Produced = %d\n", sum);
 
-  printf("Parent process terminating\n");
   wait(NULL);
 }
 
 void* consumer(int consumer) {
-  printf("Running thread %d\n", consumer);
   int sum = 0;
   for (int i = 0; i < N / 3; i++) {
     struct message message;
@@ -113,8 +110,6 @@ void* consumer(int consumer) {
 
         return EXIT_FAILURE;
     } else {
-      printf("MESSAGE VAL: %s\n", message.mtext);
-
       int value = atoi(message.mtext); // read value here from queue
       sum += value;
       printf("“Consumer thread %d consumed a %d”\n", consumer, value);
