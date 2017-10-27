@@ -112,13 +112,14 @@ void* consumer(int consumer) {
         perror("msgrcv");
 
         return EXIT_FAILURE;
+    } else {
+      printf("MESSAGE VAL: %s\n", message.mtext);
+
+      int value = atoi(message.mtext); // read value here from queue
+      sum += value;
+      printf("“Consumer thread %d consumed a %d”\n", consumer, value);
     }
 
-    printf("MESSAGE VAL: %s\n", message.mtext);
-
-    int value = atoi(message.mtext); // read value here from queue
-    sum += value;
-    printf("“Consumer thread %d consumed a %d”\n", consumer, value);
     sleep((rand()%3)+1);
   }
 
