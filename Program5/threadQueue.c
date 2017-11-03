@@ -26,6 +26,8 @@ void *consumer(int); /* the consumer thread */
 
 void initializeData() {
 
+    srand(time());
+
    /* Create the mutex lock */
    pthread_mutex_init(&mutex, NULL);
 
