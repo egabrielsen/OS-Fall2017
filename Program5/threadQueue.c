@@ -112,20 +112,25 @@ int insert_item(buffer_item item) {
    /* When the buffer is not full add the item
       and increment the counter*/
    int index = counter % BUFFER_SIZE;
+
    buffer[index] = item;
    counter++;
    return 0;
+
 }
 
 /* Remove an item from the buffer */
 int remove_item() {
    /* When the buffer is not empty remove the item
       and decrement the counter */
-
-    int index = counter % BUFFER_SIZE;
-    counter--;
-    return buffer[index-1];
-
+   if(counter > 0) {
+      int index = counter % BUFFER_SIZE;
+      counter--;
+      return buffer[index-1];
+   }
+   else { /* Error buffer empty */
+      return -1;
+   }
 }
 
 int main(int argc, char *argv[]) {
