@@ -5,6 +5,7 @@ typedef unsigned int buffer_item;
 #include <stdio.h>
 #include <pthread.h>
 #include <semaphore.h>
+#include <time.h>
 /* The mutex lock */
 pthread_mutex_t mutex;
 
@@ -26,7 +27,7 @@ void *consumer(int); /* the consumer thread */
 
 void initializeData() {
 
-    srand(time());
+    srand(time(NULL));
 
    /* Create the mutex lock */
    pthread_mutex_init(&mutex, NULL);
