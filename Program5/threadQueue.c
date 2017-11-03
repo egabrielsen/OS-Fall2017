@@ -5,10 +5,6 @@ typedef unsigned int buffer_item;
 #include <stdio.h>
 #include <pthread.h>
 #include <semaphore.h>
-
-#define RAND_DIVISOR 100000000
-#define TRUE 1
-
 /* The mutex lock */
 pthread_mutex_t mutex;
 
