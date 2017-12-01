@@ -177,6 +177,8 @@ int main(int argc, char *argv[]) {
       pthread_join(consumers[i], NULL);
    }
 
+   wait(NULL);
+
    /* Exit the program */
    exit(0);
 }
